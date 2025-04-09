@@ -11,7 +11,7 @@ export default function Image() {
 
 	useEffect(() => {
 		try {
-			fetch(`http://localhost:3000/images/${id}`)
+			fetch(`http://localhost:3000/api/images/${id}`)
 				.then((res) => res.json())
 				.then((data) => setImgData(data));
 		} catch (error) {
@@ -26,7 +26,7 @@ export default function Image() {
 
 	function createGame() {
 		try {
-			fetch("http://localhost:3000/games", {
+			fetch("http://localhost:3000/api/games", {
 				method: "post",
 				credentials: "include",
 				"Content-Type": "application/json",
