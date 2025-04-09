@@ -1,0 +1,21 @@
+.nav {
+	background-color: rgb(73, 73, 73);
+	padding: 0 0.5rem;
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+}
+
+.nav a {
+	text-decoration: inherit;
+	color: white;
+	padding: 1rem 2rem;
+	transition: 0.25s background-color;
+	font-size: 24px;
+	display: flex;
+	align-items: center;
+}
+
+.nav a:hover {
+	background-color: rgb(45, 45, 45);
+}

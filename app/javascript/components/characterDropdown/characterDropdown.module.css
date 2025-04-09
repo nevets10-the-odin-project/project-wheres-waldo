@@ -1,0 +1,9 @@
+.charDropdown {
+	background-color: white;
+	list-style-type: none;
+}
+
+.character:hover {
+	background-color: lightgray;
+	cursor: pointer;
+}

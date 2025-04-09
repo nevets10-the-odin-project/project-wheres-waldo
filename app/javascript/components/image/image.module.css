@@ -1,0 +1,25 @@
+.coords {
+	position: sticky;
+	top: 0;
+	left: 0;
+	background-color: white;
+}
+
+.imageWrapper {
+	position: relative;
+}
+
+.menuWrapper {
+	display: none;
+}
+
+.targetingBox {
+	width: 50px;
+	height: 50px;
+	border: red 5px solid;
+}
+
+.show {
+	display: block;
+	position: absolute;
+}
