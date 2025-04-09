@@ -1,4 +1,4 @@
-class GamesController < ApplicationController
+class Api::GamesController < ApplicationController
   def create
     p session[:image_id]
     @game = Image.find(session[:image_id].to_i).games.create

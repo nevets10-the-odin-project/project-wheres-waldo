@@ -11,7 +11,9 @@ export default function Image() {
 
 	useEffect(() => {
 		try {
-			fetch(`http://localhost:3000/api/images/${id}`)
+			fetch(`http://127.0.0.1:3000/api/images/${id}`, {
+				"Access-Control-Allow-Origin": "*",
+			})
 				.then((res) => res.json())
 				.then((data) => setImgData(data));
 		} catch (error) {
@@ -26,7 +28,7 @@ export default function Image() {
 
 	function createGame() {
 		try {
-			fetch("http://localhost:3000/api/games", {
+			fetch("http://127.0.0.1:3000/api/games", {
 				method: "post",
 				credentials: "include",
 				"Content-Type": "application/json",
