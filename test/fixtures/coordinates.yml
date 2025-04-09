@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  image: one
+  character: one
+  start_x: 1
+  start_y: 1
+  end_x: 1
+  end_y: 1
+
+two:
+  image: two
+  character: two
+  start_x: 1
+  start_y: 1
+  end_x: 1
+  end_y: 1

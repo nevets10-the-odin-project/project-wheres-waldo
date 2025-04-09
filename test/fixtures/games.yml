@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  image: one
+  start_time: 2025-04-06 16:08:14
+  end_time: 2025-04-06 16:08:14
+  initials: MyString
+  session_id: MyString
+
+two:
+  image: two
+  start_time: 2025-04-06 16:08:14
+  end_time: 2025-04-06 16:08:14
+  initials: MyString
+  session_id: MyString
