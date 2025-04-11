@@ -27,11 +27,15 @@ export default function Image() {
 	}
 
 	function createGame() {
+		const csrfToken = document.head.querySelector(
+			"meta[name=csrf-token]"
+		)?.content;
+
 		try {
 			fetch("http://127.0.0.1:3000/api/games", {
 				method: "post",
-				credentials: "include",
 				"Content-Type": "application/json",
+				headers: { "X-CSRF-Token": csrfToken },
 			});
 		} catch (error) {
 			console.log(error);
