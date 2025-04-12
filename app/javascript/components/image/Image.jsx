@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./image.module.css";
 import { useParams } from "react-router-dom";
 import CharacterDropdown from "../characterDropdown/CharacterDropdown";
+import CharacterPin from "../characterPin/CharacterPin";
 
 export default function Image() {
 	const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
@@ -88,6 +89,9 @@ export default function Image() {
 					handleCharSubmit={handleCharSubmit}
 				/>
 			</div>
+			{foundCharacters.map((character, index) => (
+				<CharacterPin key={index} character={character} />
+			))}
 			<img
 				src={imgData.file_name}
 				alt=""
