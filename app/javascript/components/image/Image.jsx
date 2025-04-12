@@ -49,7 +49,7 @@ export default function Image() {
 				.then((res) => res.json())
 				.then((data) => {
 					setShowBox(!showBox);
-					console.log(data.found_characters);
+					setFoundCharacters(JSON.parse(data.found_characters));
 				});
 		} catch (error) {
 			console.log(error);
