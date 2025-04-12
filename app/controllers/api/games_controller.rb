@@ -27,11 +27,16 @@ class Api::GamesController < ApplicationController
   def check_guess
     @guess = guess_params
     @char_coords = Character.find_by(name: @guess[:character]).coordinates.find_by(image_id: session[:image_id])
-    is_overlap = @guess[:end_x] >= @char_coords[:start_x] && @char_coords[:end_x] >= @guess[:start_x] &&
-                 @guess[:end_y] >= @char_coords[:start_y] && @char_coords[:end_y] >= @guess[:start_y]
+    @is_overlap = @guess[:end_x] >= @char_coords[:start_x] && @char_coords[:end_x] >= @guess[:start_x] &&
+                  @guess[:end_y] >= @char_coords[:start_y] && @char_coords[:end_y] >= @guess[:start_y]
 
-    if is_overlap && !@game[:found_characters]&.include?(@guess[:character])
-      @game.update(found_characters: "#{@guess[:character]},#{@game[:found_characters]}")
+    @found_characters = @game[:found_characters] ? JSON.parse(@game[:found_characters]) : []
+
+    if @is_overlap && !@found_characters&.map { |char| char['name'] }&.include?(@guess[:character])
+      @found_characters.push({ name: @guess[:character],
+                               coordinates: { x: (@char_coords[:start_x] + @char_coords[:end_x]) / 2,
+                                              y: @char_coords[:start_y] } })
+      @game.update(found_characters: JSON.dump(@found_characters))
     end
 
     render json: @game
