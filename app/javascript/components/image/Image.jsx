@@ -22,7 +22,6 @@ export default function Image() {
 	}, [id]);
 
 	function handleClick(e) {
-		console.log({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
 		setCoordinates({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
 		setShowBox(!showBox);
 	}
