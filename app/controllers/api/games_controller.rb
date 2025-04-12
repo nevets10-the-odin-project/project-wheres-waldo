@@ -1,5 +1,5 @@
 class Api::GamesController < ApplicationController
-  before_action :set_game, only: %i[update check_coordinates]
+  before_action :set_game, only: %i[update check_guess]
 
   def create
     @existing_game = Game.find_by(session_id: request.session_options[:id].to_s, image_id: session[:image_id])
@@ -24,7 +24,7 @@ class Api::GamesController < ApplicationController
     end
   end
 
-  def check_coordinates
+  def check_guess
     @guess = guess_params
     @char_coords = Character.find_by(name: @guess[:character]).coordinates.find_by(image_id: session[:image_id])
     is_overlap = @guess[:end_x] >= @char_coords[:start_x] && @char_coords[:end_x] >= @guess[:start_x] && @guess[:end_y] >= @char_coords[:start_y] && @char_coords[:end_y] >= @guess[:start_y]
