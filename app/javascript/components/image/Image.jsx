@@ -23,6 +23,20 @@ export default function Image() {
 		}
 	}, [id]);
 
+	useEffect(() => {
+		if (!imgData || !foundCharacters) return;
+
+		let imgCharNames = imgData.characters.map((char) => char.name);
+		let foundCharNames = foundCharacters.map((char) => char.name);
+
+		let hasFoundAll = imgCharNames.reduce(
+			(acc, cur) => (foundCharNames.indexOf(cur) >= 0 ? acc : false),
+			true
+		);
+
+		console.log(hasFoundAll);
+	}, [imgData, foundCharacters]);
+
 	function handleClick(e) {
 		setCoordinates({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
 		setShowBox(!showBox);
