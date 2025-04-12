@@ -22,10 +22,10 @@ end
   {
     image_id: 1,
     character_id: 1,
-    start_x: 2535,
-    start_y: 1665,
-    end_x: 2662,
-    end_y: 1843
+    start_x: 1268,
+    start_y: 831,
+    end_x: 1334,
+    end_y: 921
   }
 ].each do |coord|
   Coordinate.find_or_create_by!(
