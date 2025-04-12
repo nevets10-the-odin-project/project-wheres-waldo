@@ -31,6 +31,10 @@ class Api::GamesController < ApplicationController
                  @guess[:end_y] >= @char_coords[:start_y] && @char_coords[:end_y] >= @guess[:start_y]
 
     if is_overlap
+      unless @game[:found_characters]&.include?(@guess[:character])
+        @game.update(found_characters: "#{@guess[:character]}, #{@game[:found_characters]}")
+      end
+
       render json: { answer: 'Yes!', guess: @guess, char: @char_coords }
     else
       render json: { answer: 'NOPE!', guess: @guess, char: @char_coords }
