@@ -10,7 +10,7 @@ class Api::GamesController < ApplicationController
 
     if @game.save
       session[:game_id] = @game[:id]
-      head :ok
+      render json: @game
     else
       head :unprocessable_entity
     end
@@ -18,7 +18,7 @@ class Api::GamesController < ApplicationController
 
   def update
     if @game.update(game_params)
-      head :ok
+      render json: @game
     else
       head :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class Api::GamesController < ApplicationController
         @game.update(found_characters: "#{@guess[:character]}, #{@game[:found_characters]}")
       end
 
-      render json: { answer: 'Yes!', guess: @guess, char: @char_coords }
+      render json: @game
     else
       render json: { answer: 'NOPE!', guess: @guess, char: @char_coords }
     end
