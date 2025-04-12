@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   namespace :api do
     resources :images, only: %i[index show]
     resources :games, only: %i[create update]
+    post '/games/guess', to: 'games#check_coordinates'
   end
 end

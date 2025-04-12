@@ -22,8 +22,35 @@ export default function Image() {
 	}, [id]);
 
 	function handleClick(e) {
+		console.log({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
 		setCoordinates({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
 		setShowBox(!showBox);
+	}
+
+	function handleCharSubmit(e) {
+		const csrfToken = document.head.querySelector(
+			"meta[name=csrf-token]"
+		)?.content;
+
+		try {
+			fetch("http://127.0.0.1:3000/api/games/guess", {
+				method: "post",
+				headers: { "X-CSRF-Token": csrfToken, "Content-Type": "application/json" },
+				body: JSON.stringify({
+					guess: {
+						character: e.target.innerText,
+						start_x: coordinates.x - 25,
+						end_x: coordinates.x + 25,
+						start_y: coordinates.y - 25,
+						end_y: coordinates.y + 25,
+					},
+				}),
+			})
+				.then((res) => res.json())
+				.then((data) => console.table(data));
+		} catch (error) {
+			console.log(error);
+		}
 	}
 
 	function createGame() {
@@ -55,6 +82,7 @@ export default function Image() {
 				<div className={styles.targetingBox}></div>
 				<CharacterDropdown
 					characters={imgData.characters.map((char) => char.name)}
+					handleCharSubmit={handleCharSubmit}
 				/>
 			</div>
 			<img
