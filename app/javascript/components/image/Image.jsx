@@ -50,7 +50,9 @@ export default function Image() {
 				.then((res) => res.json())
 				.then((data) => {
 					setShowBox(!showBox);
-					setFoundCharacters(JSON.parse(data.found_characters));
+					if (data.found_characters) {
+						setFoundCharacters(JSON.parse(data.found_characters));
+					}
 				});
 		} catch (error) {
 			console.log(error);
@@ -70,7 +72,9 @@ export default function Image() {
 			})
 				.then((res) => res.json())
 				.then((data) => {
-					setFoundCharacters(JSON.parse(data.found_characters));
+					if (data.found_characters) {
+						setFoundCharacters(JSON.parse(data.found_characters));
+					}
 				});
 		} catch (error) {
 			console.log(error);
