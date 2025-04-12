@@ -7,6 +7,7 @@ export default function Image() {
 	const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
 	const [showBox, setShowBox] = useState(false);
 	const [imgData, setImgData] = useState(undefined);
+	const [foundCharacters, setFoundCharacters] = useState([]);
 	const { id } = useParams();
 
 	useEffect(() => {
@@ -46,7 +47,10 @@ export default function Image() {
 				}),
 			})
 				.then((res) => res.json())
-				.then((data) => console.table(data));
+				.then((data) => {
+					setShowBox(!showBox);
+					if (data) setFoundCharacters(data.found_characters.split(","));
+				});
 		} catch (error) {
 			console.log(error);
 		}
