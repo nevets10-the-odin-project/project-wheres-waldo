@@ -67,7 +67,11 @@ export default function Image() {
 				method: "post",
 				"Content-Type": "application/json",
 				headers: { "X-CSRF-Token": csrfToken },
-			});
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					setFoundCharacters(JSON.parse(data.found_characters));
+				});
 		} catch (error) {
 			console.log(error);
 		}

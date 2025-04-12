@@ -3,7 +3,7 @@ class Api::GamesController < ApplicationController
 
   def create
     @existing_game = Game.find_by(session_id: request.session_options[:id].to_s, image_id: session[:image_id])
-    return head :ok if @existing_game
+    return render json: @existing_game if @existing_game
 
     start_params = { start_time: Time.now, session_id: request.session_options[:id] }
     @game = Image.find(session[:image_id].to_i).games.create(start_params)
