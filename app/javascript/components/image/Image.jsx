@@ -23,20 +23,6 @@ export default function Image() {
 		}
 	}, [id]);
 
-	useEffect(() => {
-		if (!imgData || !foundCharacters) return;
-
-		let imgCharNames = imgData.characters.map((char) => char.name);
-		let foundCharNames = foundCharacters.map((char) => char.name);
-
-		let hasFoundAll = imgCharNames.reduce(
-			(acc, cur) => (foundCharNames.indexOf(cur) >= 0 ? acc : false),
-			true
-		);
-
-		console.log(hasFoundAll);
-	}, [imgData, foundCharacters]);
-
 	function handleClick(e) {
 		setCoordinates({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
 		setShowBox(!showBox);
@@ -111,9 +97,16 @@ export default function Image() {
 					handleCharSubmit={handleCharSubmit}
 				/>
 			</div>
-			{foundCharacters.map((character, index) => (
-				<CharacterPin key={index} character={character} />
-			))}
+			{foundCharacters &&
+				foundCharacters.map((charIndex) => (
+					<CharacterPin
+						key={charIndex}
+						character={imgData.characters.find((c) => c.id === charIndex)}
+						coordinates={imgData.coordinates.find(
+							(c) => c.character_id === charIndex
+						)}
+					/>
+				))}
 			<img
 				src={imgData.file_name}
 				alt=""
