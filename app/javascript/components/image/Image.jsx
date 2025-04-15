@@ -8,7 +8,7 @@ export default function Image() {
 	const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
 	const [showBox, setShowBox] = useState(false);
 	const [imgData, setImgData] = useState(undefined);
-	const [foundCharacters, setFoundCharacters] = useState([]);
+	const [gameData, setGameData] = useState(undefined);
 	const { id } = useParams();
 
 	useEffect(() => {
@@ -72,9 +72,7 @@ export default function Image() {
 			})
 				.then((res) => res.json())
 				.then((data) => {
-					if (data.found_characters) {
-						setFoundCharacters(JSON.parse(data.found_characters));
-					}
+					setGameData(data);
 				});
 		} catch (error) {
 			console.log(error);
@@ -97,8 +95,8 @@ export default function Image() {
 					handleCharSubmit={handleCharSubmit}
 				/>
 			</div>
-			{foundCharacters &&
-				foundCharacters.map((charIndex) => (
+			{gameData?.found_characters &&
+				JSON.parse(gameData.found_characters).map((charIndex) => (
 					<CharacterPin
 						key={charIndex}
 						character={imgData.characters.find((c) => c.id === charIndex)}
