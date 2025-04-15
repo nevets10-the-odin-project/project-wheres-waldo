@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./characterPin.module.css";
 
 export default function CharacterPin({ character, coordinates }) {
-	console.log(coordinates);
 	return (
 		<div
 			className={styles.pin}
