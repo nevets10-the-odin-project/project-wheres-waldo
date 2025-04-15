@@ -30,12 +30,9 @@ class Api::GamesController < ApplicationController
     @character = Image.find(@game[:image_id]).characters.find_by(name: @guess[:character])
     @char_coords = @character.coordinates.find_by(image_id: session[:image_id])
 
-    @is_overlap = @guess[:end_x] >= @char_coords[:start_x] && @char_coords[:end_x] >= @guess[:start_x] &&
-                  @guess[:end_y] >= @char_coords[:start_y] && @char_coords[:end_y] >= @guess[:start_y]
-
     @found_characters = @game[:found_characters] ? JSON.parse(@game[:found_characters]) : []
 
-    if @is_overlap && !@found_characters&.include?(@character[:id])
+    if overlap?(@guess, @char_coords) && !@found_characters&.include?(@character[:id])
       @found_characters.push(@character[:id])
       @game.update(found_characters: JSON.dump(@found_characters))
     end
@@ -44,6 +41,11 @@ class Api::GamesController < ApplicationController
   end
 
   private
+
+  def overlap?(guess, char_coords)
+    guess[:end_x] >= char_coords[:start_x] && char_coords[:end_x] >= guess[:start_x] &&
+      guess[:end_y] >= char_coords[:start_y] && char_coords[:end_y] >= guess[:start_y]
+  end
 
   def game_params
     params.expect(:end_date, :initials)
