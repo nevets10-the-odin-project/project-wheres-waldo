@@ -37,7 +37,7 @@ class Api::GamesController < ApplicationController
       @game.update(found_characters: JSON.dump(@found_characters))
     end
 
-    @game.update(end_time: Time.now) if all_found?(@found_characters, @characters)
+    @game.update(end_time: Time.now) if all_found?(@found_characters, @characters) && !@game[:end_time]
 
     render json: @game
   end
