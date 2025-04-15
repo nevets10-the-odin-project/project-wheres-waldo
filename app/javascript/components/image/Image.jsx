@@ -3,6 +3,7 @@ import styles from "./image.module.css";
 import { useParams } from "react-router-dom";
 import CharacterDropdown from "../characterDropdown/CharacterDropdown";
 import CharacterPin from "../characterPin/CharacterPin";
+import FinishBanner from "../finishBanner/FinishBanner";
 
 export default function Image() {
 	const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
@@ -50,9 +51,7 @@ export default function Image() {
 				.then((res) => res.json())
 				.then((data) => {
 					setShowBox(!showBox);
-					if (data.found_characters) {
-						setFoundCharacters(JSON.parse(data.found_characters));
-					}
+					setGameData(data);
 				});
 		} catch (error) {
 			console.log(error);
@@ -82,35 +81,38 @@ export default function Image() {
 	if (imgData === undefined) return <div>Loading...</div>;
 
 	return (
-		<div className={styles.imageWrapper}>
-			<div
-				className={
-					showBox ? `${styles.menuWrapper} ${styles.show}` : styles.menuWrapper
-				}
-				style={{ top: coordinates.y - 25, left: coordinates.x - 25 }}
-			>
-				<div className={styles.targetingBox}></div>
-				<CharacterDropdown
-					characters={imgData.characters.map((char) => char.name)}
-					handleCharSubmit={handleCharSubmit}
+		<>
+			<div className={styles.imageWrapper}>
+				<div
+					className={
+						showBox ? `${styles.menuWrapper} ${styles.show}` : styles.menuWrapper
+					}
+					style={{ top: coordinates.y - 25, left: coordinates.x - 25 }}
+				>
+					<div className={styles.targetingBox}></div>
+					<CharacterDropdown
+						characters={imgData.characters.map((char) => char.name)}
+						handleCharSubmit={handleCharSubmit}
+					/>
+				</div>
+				{gameData?.found_characters &&
+					JSON.parse(gameData.found_characters).map((charIndex) => (
+						<CharacterPin
+							key={charIndex}
+							character={imgData.characters.find((c) => c.id === charIndex)}
+							coordinates={imgData.coordinates.find(
+								(c) => c.character_id === charIndex
+							)}
+						/>
+					))}
+				{gameData?.end_time && <FinishBanner />}
+				<img
+					src={imgData.file_name}
+					alt=""
+					onClick={handleClick}
+					onLoad={() => createGame()}
 				/>
 			</div>
-			{gameData?.found_characters &&
-				JSON.parse(gameData.found_characters).map((charIndex) => (
-					<CharacterPin
-						key={charIndex}
-						character={imgData.characters.find((c) => c.id === charIndex)}
-						coordinates={imgData.coordinates.find(
-							(c) => c.character_id === charIndex
-						)}
-					/>
-				))}
-			<img
-				src={imgData.file_name}
-				alt=""
-				onClick={handleClick}
-				onLoad={() => createGame()}
-			/>
-		</div>
+		</>
 	);
 }
