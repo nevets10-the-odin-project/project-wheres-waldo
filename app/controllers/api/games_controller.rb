@@ -32,7 +32,7 @@ class Api::GamesController < ApplicationController
 
     @found_characters = @game[:found_characters] ? JSON.parse(@game[:found_characters]) : []
 
-    if overlap?(@guess, @char_coords) && !@found_characters&.include?(@character[:id])
+    if overlap?(@guess, @char_coords) && @found_characters&.none?(@character[:id])
       @found_characters.push(@character[:id])
       @game.update(found_characters: JSON.dump(@found_characters))
     end
