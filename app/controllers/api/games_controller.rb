@@ -54,7 +54,7 @@ class Api::GamesController < ApplicationController
   end
 
   def game_params
-    params.expect(:initials)
+    params.expect(game: :initials)
   end
 
   def guess_params

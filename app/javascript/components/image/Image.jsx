@@ -12,6 +12,10 @@ export default function Image() {
 	const [gameData, setGameData] = useState(undefined);
 	const { id } = useParams();
 
+	const csrfToken = document.head.querySelector(
+		"meta[name=csrf-token]"
+	)?.content;
+
 	useEffect(() => {
 		try {
 			fetch(`http://127.0.0.1:3000/api/images/${id}`, {
@@ -29,11 +33,25 @@ export default function Image() {
 		setShowBox(!showBox);
 	}
 
-	function handleCharSubmit(e) {
-		const csrfToken = document.head.querySelector(
-			"meta[name=csrf-token]"
-		)?.content;
+	function handleInitialsSubmit(e) {
+		e.preventDefault();
 
+		try {
+			fetch(`http://127.0.0.1:3000/api/games/${gameData.id}`, {
+				method: "put",
+				headers: { "X-CSRF-Token": csrfToken, "Content-Type": "application/json" },
+				body: JSON.stringify({ initials: e.target[0].value }),
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					setGameData(data);
+				});
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	function handleCharSubmit(e) {
 		try {
 			fetch("http://127.0.0.1:3000/api/games/guess", {
 				method: "post",
@@ -59,14 +77,9 @@ export default function Image() {
 	}
 
 	function createGame() {
-		const csrfToken = document.head.querySelector(
-			"meta[name=csrf-token]"
-		)?.content;
-
 		try {
 			fetch("http://127.0.0.1:3000/api/games", {
 				method: "post",
-				"Content-Type": "application/json",
 				headers: { "X-CSRF-Token": csrfToken },
 			})
 				.then((res) => res.json())
@@ -105,7 +118,12 @@ export default function Image() {
 							)}
 						/>
 					))}
-				{gameData?.end_time && <FinishBanner />}
+				{gameData?.end_time && (
+					<FinishBanner
+						gameData={gameData}
+						handleInitialsSubmit={handleInitialsSubmit}
+					/>
+				)}
 				<img
 					src={imgData.file_name}
 					alt=""
