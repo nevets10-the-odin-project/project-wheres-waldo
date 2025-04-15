@@ -26,8 +26,8 @@ class Api::GamesController < ApplicationController
 
   def check_guess
     @guess = guess_params
-
-    @character = Image.find(@game[:image_id]).characters.find_by(name: @guess[:character])
+    @characters = Image.find(@game[:image_id]).characters
+    @character = @characters.find_by(name: @guess[:character])
     @char_coords = @character.coordinates.find_by(image_id: session[:image_id])
 
     @found_characters = @game[:found_characters] ? JSON.parse(@game[:found_characters]) : []
@@ -36,6 +36,8 @@ class Api::GamesController < ApplicationController
       @found_characters.push(@character[:id])
       @game.update(found_characters: JSON.dump(@found_characters))
     end
+
+    @game.update(end_time: Time.now) if all_found?(@found_characters, @characters)
 
     render json: @game
   end
@@ -47,8 +49,12 @@ class Api::GamesController < ApplicationController
       guess[:end_y] >= char_coords[:start_y] && char_coords[:end_y] >= guess[:start_y]
   end
 
+  def all_found?(found, characters)
+    characters.reduce(true) { |acc, cur| found.include?(cur[:id]) ? acc : false }
+  end
+
   def game_params
-    params.expect(:end_date, :initials)
+    params.expect(:initials)
   end
 
   def guess_params
