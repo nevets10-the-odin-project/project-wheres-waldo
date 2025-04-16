@@ -3,4 +3,9 @@
 	background-color: lightgray;
 	padding: 0.5rem 1rem;
 	margin: 0.5rem auto;
+	transition: 0.25s background-color;
+}
+
+.card:hover {
+	background-color: rgb(150 150 150);
 }
