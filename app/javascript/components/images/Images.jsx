@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Nav from "../nav/Nav";
 import ImagePage from "../imagePage/ImagePage";
 import { useParams } from "react-router-dom";
+import ImageCard from "../imageCard/ImageCard";
 
 export default function Images() {
 	const [images, setImages] = useState([]);
@@ -21,7 +22,7 @@ export default function Images() {
 		<>
 			<Nav />
 			{id === undefined ? (
-				images.map((image) => <div>{image.name}</div>)
+				images.map((image) => <ImageCard key={image.id} image={image} />)
 			) : (
 				<ImagePage />
 			)}
