@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./imagePage.module.css";
 import { useParams } from "react-router-dom";
 import CharacterDropdown from "../characterDropdown/CharacterDropdown";
 import CharacterPin from "../characterPin/CharacterPin";
 import FinishBanner from "../finishBanner/FinishBanner";
+import ErrorPin from "../errorPin/ErrorPin";
 
 export default function ImagePage() {
 	const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
 	const [showBox, setShowBox] = useState(false);
+	const [badGuess, setBadGuess] = useState(false);
 	const [imgData, setImgData] = useState(undefined);
 	const [gameData, setGameData] = useState(undefined);
+	const lastGuess = useRef({ x: 0, y: 0 });
 	const { id } = useParams();
 
 	const csrfToken = document.head.querySelector(
@@ -50,6 +53,8 @@ export default function ImagePage() {
 	}
 
 	function handleCharSubmit(e) {
+		lastGuess.current = coordinates;
+
 		try {
 			fetch("http://127.0.0.1:3000/api/games/guess", {
 				method: "post",
@@ -66,6 +71,12 @@ export default function ImagePage() {
 			})
 				.then((res) => res.json())
 				.then((data) => {
+					if (gameData.found_characters === data.found_characters) {
+						setBadGuess(true);
+					} else {
+						setBadGuess(false);
+					}
+
 					setShowBox(!showBox);
 					setGameData(data);
 				});
@@ -105,6 +116,12 @@ export default function ImagePage() {
 						characters={imgData.characters.map((char) => char.name)}
 						handleCharSubmit={handleCharSubmit}
 					/>
+				</div>
+				<div
+					className={badGuess ? `${styles.show}` : " "}
+					style={{ top: lastGuess.current.y - 25, left: lastGuess.current.x - 25 }}
+				>
+					<ErrorPin />
 				</div>
 				{gameData?.found_characters &&
 					JSON.parse(gameData.found_characters).map((charIndex) => (
