@@ -118,7 +118,7 @@ export default function ImagePage() {
 					/>
 				</div>
 				<div
-					className={badGuess ? `${styles.show}` : " "}
+					className={badGuess ? styles.show : styles.hide}
 					style={{ top: lastGuess.current.y - 25, left: lastGuess.current.x - 25 }}
 				>
 					<ErrorPin />
