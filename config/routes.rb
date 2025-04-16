@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :images, only: %i[index show]
     resources :games, only: %i[create update]
+    resources :leaderboard, only: %i[index]
     post '/games/guess', to: 'games#check_guess'
   end
 end
