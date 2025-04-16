@@ -18,9 +18,7 @@ export default function ImagePage() {
 
 	useEffect(() => {
 		try {
-			fetch(`http://127.0.0.1:3000/api/images/${id}`, {
-				"Access-Control-Allow-Origin": "*",
-			})
+			fetch(`http://127.0.0.1:3000/api/images/${id}`)
 				.then((res) => res.json())
 				.then((data) => setImgData(data));
 		} catch (error) {
