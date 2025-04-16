@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import styles from "./images.module.css";
 import Nav from "../nav/Nav";
 import ImagePage from "../imagePage/ImagePage";
-import { useParams } from "react-router-dom";
 import ImageCard from "../imageCard/ImageCard";
 
 export default function Images() {
@@ -21,11 +22,13 @@ export default function Images() {
 	return (
 		<>
 			<Nav />
-			{id === undefined ? (
-				images.map((image) => <ImageCard key={image.id} image={image} />)
-			) : (
-				<ImagePage />
-			)}
+			<div className={styles.imagesWrapper}>
+				{id === undefined ? (
+					images.map((image) => <ImageCard key={image.id} image={image} />)
+				) : (
+					<ImagePage />
+				)}
+			</div>
 		</>
 	);
 }
