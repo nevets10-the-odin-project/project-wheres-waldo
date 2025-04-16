@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
+import Icon from "@mdi/react";
+import { mdiCloseThick } from "@mdi/js";
 import styles from "./imagePage.module.css";
 import { useParams } from "react-router-dom";
 import CharacterDropdown from "../characterDropdown/CharacterDropdown";
 import CharacterPin from "../characterPin/CharacterPin";
 import FinishBanner from "../finishBanner/FinishBanner";
-import ErrorPin from "../errorPin/ErrorPin";
 
 export default function ImagePage() {
 	const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
@@ -122,7 +123,7 @@ export default function ImagePage() {
 					className={badGuess ? styles.show : styles.hide}
 					style={{ top: lastGuess.current.y - 25, left: lastGuess.current.x - 25 }}
 				>
-					<ErrorPin />
+					<Icon path={mdiCloseThick} size={2.5} color="red" />
 				</div>
 				{gameData?.found_characters &&
 					JSON.parse(gameData.found_characters).map((charIndex) => (
