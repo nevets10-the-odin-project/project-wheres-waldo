@@ -32,6 +32,7 @@ export default function ImagePage() {
 	function handleClick(e) {
 		setCoordinates({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
 		setShowBox(!showBox);
+		setBadGuess(false);
 	}
 
 	function handleInitialsSubmit(e) {
