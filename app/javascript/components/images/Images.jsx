@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Nav from "../nav/Nav";
-import Image from "../image/Image";
+import ImagePage from "../imagePage/ImagePage";
 import { useParams } from "react-router-dom";
 
 export default function Images() {
@@ -23,7 +23,7 @@ export default function Images() {
 			{id === undefined ? (
 				images.map((image) => <div>{image.name}</div>)
 			) : (
-				<Image />
+				<ImagePage />
 			)}
 		</>
 	);

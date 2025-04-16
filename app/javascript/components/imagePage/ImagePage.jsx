@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import styles from "./image.module.css";
+import styles from "./imagePage.module.css";
 import { useParams } from "react-router-dom";
 import CharacterDropdown from "../characterDropdown/CharacterDropdown";
 import CharacterPin from "../characterPin/CharacterPin";
 import FinishBanner from "../finishBanner/FinishBanner";
 
-export default function Image() {
+export default function ImagePage() {
 	const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
 	const [showBox, setShowBox] = useState(false);
 	const [imgData, setImgData] = useState(undefined);
