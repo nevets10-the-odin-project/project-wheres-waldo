@@ -107,6 +107,16 @@ export default function ImagePage() {
 	return (
 		<>
 			<div className={styles.imageWrapper}>
+				{gameData?.found_characters &&
+					JSON.parse(gameData.found_characters).map((charIndex) => (
+						<CharacterPin
+							key={charIndex}
+							character={imgData.characters.find((c) => c.id === charIndex)}
+							coordinates={imgData.coordinates.find(
+								(c) => c.character_id === charIndex
+							)}
+						/>
+					))}
 				<div
 					className={
 						showBox ? `${styles.menuWrapper} ${styles.show}` : styles.menuWrapper
@@ -125,16 +135,6 @@ export default function ImagePage() {
 				>
 					<Icon path={mdiCloseThick} size={2.5} color="red" />
 				</div>
-				{gameData?.found_characters &&
-					JSON.parse(gameData.found_characters).map((charIndex) => (
-						<CharacterPin
-							key={charIndex}
-							character={imgData.characters.find((c) => c.id === charIndex)}
-							coordinates={imgData.coordinates.find(
-								(c) => c.character_id === charIndex
-							)}
-						/>
-					))}
 				{gameData?.end_time && (
 					<FinishBanner
 						gameData={gameData}
