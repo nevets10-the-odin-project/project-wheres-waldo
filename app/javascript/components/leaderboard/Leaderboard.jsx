@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Nav from "../nav/Nav";
 import styles from "./leaderboard.module.css";
+import ImageLeaderboard from "../imageLeaderboard/ImageLeaderboard";
 
 export default function Leaderboard() {
 	const [imgData, setImgData] = useState(undefined);
@@ -18,7 +19,9 @@ export default function Leaderboard() {
 	return (
 		<>
 			<Nav />
-			<div></div>
+			{imgData?.map((img) => (
+				<ImageLeaderboard key={img.id} image={img} />
+			))}
 		</>
 	);
 }
