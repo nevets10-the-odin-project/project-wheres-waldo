@@ -1,5 +1,6 @@
 .pin {
 	background-color: white;
+	border: solid red 2px;
 	position: absolute;
 	padding: 0.25rem;
 }
