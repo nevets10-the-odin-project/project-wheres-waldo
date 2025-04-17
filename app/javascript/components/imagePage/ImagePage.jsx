@@ -10,6 +10,7 @@ import FinishBanner from "../finishBanner/FinishBanner";
 export default function ImagePage() {
 	const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
 	const [isLoading, setIsLoading] = useState(true);
+	const [isChecking, setIsChecking] = useState(false);
 	const [showBox, setShowBox] = useState(false);
 	const [badGuess, setBadGuess] = useState(false);
 	const [imgData, setImgData] = useState(undefined);
@@ -56,6 +57,7 @@ export default function ImagePage() {
 	}
 
 	function handleCharSubmit(e) {
+		setIsChecking(true);
 		lastGuess.current = coordinates;
 
 		try {
@@ -74,6 +76,8 @@ export default function ImagePage() {
 			})
 				.then((res) => res.json())
 				.then((data) => {
+					setIsChecking(false);
+
 					if (gameData.found_characters === data.found_characters) {
 						setBadGuess(true);
 					} else {
@@ -134,6 +138,11 @@ export default function ImagePage() {
 					}
 					style={{ top: coordinates.y - 25, left: coordinates.x - 25 }}
 				>
+					{isChecking && (
+						<div style={{ top: coordinates.y - 25, left: coordinates.x - 25 }}>
+							<Icon path={mdiLoading} spin={1} size={2} />
+						</div>
+					)}
 					<div className={styles.targetingBox}></div>
 					<CharacterDropdown
 						characters={imgData.characters.map((char) => char.name)}
