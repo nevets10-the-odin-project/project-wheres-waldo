@@ -8,7 +8,7 @@ export default function Leaderboard() {
 
 	useEffect(() => {
 		try {
-			fetch(`http://127.0.0.1:3000/api/leaderboard/`)
+			fetch(`/api/leaderboard/`)
 				.then((res) => res.json())
 				.then((data) => setImgData(data));
 		} catch (error) {

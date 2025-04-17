@@ -22,7 +22,7 @@ export default function ImagePage() {
 
 	useEffect(() => {
 		try {
-			fetch(`http://127.0.0.1:3000/api/images/${id}`)
+			fetch(`/api/images/${id}`)
 				.then((res) => res.json())
 				.then((data) => setImgData(data));
 		} catch (error) {
@@ -40,7 +40,7 @@ export default function ImagePage() {
 		e.preventDefault();
 
 		try {
-			fetch(`http://127.0.0.1:3000/api/games/${gameData.id}`, {
+			fetch(`/api/games/${gameData.id}`, {
 				method: "put",
 				headers: { "X-CSRF-Token": csrfToken, "Content-Type": "application/json" },
 				body: JSON.stringify({ initials: e.target[0].value }),
@@ -58,7 +58,7 @@ export default function ImagePage() {
 		lastGuess.current = coordinates;
 
 		try {
-			fetch("http://127.0.0.1:3000/api/games/guess", {
+			fetch("/api/games/guess", {
 				method: "post",
 				headers: { "X-CSRF-Token": csrfToken, "Content-Type": "application/json" },
 				body: JSON.stringify({
@@ -89,7 +89,7 @@ export default function ImagePage() {
 
 	function createGame() {
 		try {
-			fetch("http://127.0.0.1:3000/api/games", {
+			fetch("/api/games", {
 				method: "post",
 				headers: { "X-CSRF-Token": csrfToken },
 			})
