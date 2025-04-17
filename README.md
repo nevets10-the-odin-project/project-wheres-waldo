@@ -2,6 +2,8 @@
 
 https://www.theodinproject.com/lessons/react-new-where-s-waldo-a-photo-tagging-app
 
+Live example: https://project-wheres-waldo-production.up.railway.app
+
 ## Instructions
 
 Build an app that, when it’s finished, will feel very similar to a photo tagging app. You’ll start with a large photograph containing several elements the user is meant to find, e.g. Waldo, The Wizard, Wilma etc. You can even name your own if you’d like to use custom pictures. The user will make selections for each character and they will be given feedback on whether they are correct or not.
