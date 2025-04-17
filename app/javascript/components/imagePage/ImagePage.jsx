@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import Icon from "@mdi/react";
-import { mdiCloseThick } from "@mdi/js";
+import { mdiCloseThick, mdiLoading } from "@mdi/js";
 import styles from "./imagePage.module.css";
 import { useParams } from "react-router-dom";
 import CharacterDropdown from "../characterDropdown/CharacterDropdown";
@@ -9,6 +9,7 @@ import FinishBanner from "../finishBanner/FinishBanner";
 
 export default function ImagePage() {
 	const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
+	const [isLoading, setIsLoading] = useState(true);
 	const [showBox, setShowBox] = useState(false);
 	const [badGuess, setBadGuess] = useState(false);
 	const [imgData, setImgData] = useState(undefined);
@@ -87,6 +88,11 @@ export default function ImagePage() {
 		}
 	}
 
+	function imgFinishLoad() {
+		createGame();
+		setIsLoading(false);
+	}
+
 	function createGame() {
 		try {
 			fetch("/api/games", {
@@ -107,6 +113,7 @@ export default function ImagePage() {
 	return (
 		<>
 			<div className={styles.imageWrapper}>
+				{isLoading && <Icon path={mdiLoading} spin={1} size={10} />}
 				{gameData?.found_characters &&
 					JSON.parse(gameData.found_characters).map((charIndex) => (
 						<CharacterPin
@@ -145,7 +152,7 @@ export default function ImagePage() {
 					src={imgData.file_name}
 					alt=""
 					onClick={handleClick}
-					onLoad={() => createGame()}
+					onLoad={() => imgFinishLoad()}
 				/>
 			</div>
 		</>
