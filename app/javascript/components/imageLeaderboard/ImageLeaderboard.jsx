@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./imageLeaderboard.module.css";
+import GameScoreCard from "../gameScoreCard/GameScoreCard";
 
 function compareGames(g1, g2) {
 	const diff1 = new Date(g1.end_time) - new Date(g1.start_time);
@@ -14,8 +15,8 @@ export default function ImageLeaderboard({ image }) {
 	return (
 		<div>
 			<h2>{image.name}</h2>
-			{sortedGames?.map((game) => (
-				<div>{game.initials}</div>
+			{sortedGames?.map((game, index) => (
+				<GameScoreCard key={game.id} game={game} place={index + 1} />
 			))}
 		</div>
 	);
