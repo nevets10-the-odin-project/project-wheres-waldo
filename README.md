@@ -18,6 +18,8 @@ Extra credit - Load many images into your database and allow the user to select 
 
 It's a little rough around the edges, but I think it turned out alright. The start was really rocky. I completely forgot about the bundling lesson, so I immediately went off the rails (ha ha. get it?) trying to find out how to use React with Rails. That was a couple days of lost time... I eventually remembered and the rest was relatively smooth.
 
+I decided to try a different layout with the components, putting each component in their own folder along with their css file. I kinda don't like this idea. The folder names made the imports needlessly verbose. Maybe my project just isn't big enough to warrant the individual folders.
+
 ## Brainstorming
 
 To keep things simple, I'll just use a Where's Waldo image. I would prefer to use a creative commons image, assuming Waldo is copyrighted, but I want to prioritize time. Since this is for educational purposes, I believe this would fall under fair use. I will try to avoid including images in this repo and just link to them from elsewhere instead.
