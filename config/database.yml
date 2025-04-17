@@ -81,6 +81,7 @@ test:
 production:
   primary: &primary_production
     <<: *default
+    url: <%= ENV["DATABASE_URL"] %>
     database: project_wheres_waldo_production
     username: project_wheres_waldo
     password: <%= ENV["PROJECT_WHERES_WALDO_DATABASE_PASSWORD"] %>
