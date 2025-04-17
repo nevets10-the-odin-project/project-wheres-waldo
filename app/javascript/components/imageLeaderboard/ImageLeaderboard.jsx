@@ -9,15 +9,17 @@ function compareGames(g1, g2) {
 }
 
 export default function ImageLeaderboard({ image }) {
-	const filteredGame = image.games.filter((game) => game.end_time != null);
-	const sortedGames = filteredGame.toSorted(compareGames);
+	const finishedGames = image.games.filter((game) => game.end_time != null);
+	const sortedGames = finishedGames.toSorted(compareGames);
 
 	return (
-		<div>
-			<h2>{image.name}</h2>
-			{sortedGames?.map((game, index) => (
-				<GameScoreCard key={game.id} game={game} place={index + 1} />
-			))}
+		<div className={styles.wrapper}>
+			<div className={styles.leaderboard}>
+				<h2>{image.name}</h2>
+				{sortedGames?.map((game, index) => (
+					<GameScoreCard key={game.id} game={game} place={index + 1} />
+				))}
+			</div>
 		</div>
 	);
 }

@@ -1,0 +1,9 @@
+.wrapper {
+	display: grid;
+	place-items: center;
+}
+
+.leaderboard {
+	display: flex;
+	flex-direction: column;
+}
