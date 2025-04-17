@@ -3,6 +3,10 @@
 	list-style-type: none;
 }
 
+.character {
+	border: solid gray 1px;
+}
+
 .character:hover {
 	background-color: lightgray;
 	cursor: pointer;
