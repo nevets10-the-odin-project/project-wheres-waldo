@@ -101,7 +101,7 @@ export default function ImagePage() {
 			console.log(error);
 		}
 	}
-
+	console.table(coordinates);
 	if (imgData === undefined) return <div>Loading...</div>;
 
 	return (

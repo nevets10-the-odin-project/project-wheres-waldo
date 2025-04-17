@@ -1,3 +1,7 @@
+img {
+	max-width: 2048px;
+}
+
 .coords {
 	position: sticky;
 	top: 0;
