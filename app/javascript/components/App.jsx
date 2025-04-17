@@ -25,6 +25,12 @@ function App() {
 					specified characters) as quickly as possible. A leaderboard will show the
 					players with the fastest times.
 				</p>
+				<h2>Pro Tip</h2>
+				<p>
+					The images are very large. To zoom out, press <strong>CTRL</strong> &{" "}
+					<strong>- key</strong>. To zoom in, press <strong>CTRL</strong> &{" "}
+					<strong>+ key</strong>
+				</p>
 			</div>
 		</>
 	);
