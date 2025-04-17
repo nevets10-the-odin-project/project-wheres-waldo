@@ -113,7 +113,11 @@ export default function ImagePage() {
 	return (
 		<>
 			<div className={styles.imageWrapper}>
-				{isLoading && <Icon path={mdiLoading} spin={1} size={10} />}
+				{isLoading && (
+					<div className={styles.loading}>
+						<Icon path={mdiLoading} spin={1} size={10} />
+					</div>
+				)}
 				{gameData?.found_characters &&
 					JSON.parse(gameData.found_characters).map((charIndex) => (
 						<CharacterPin

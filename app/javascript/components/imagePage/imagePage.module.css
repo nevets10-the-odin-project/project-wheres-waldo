@@ -2,6 +2,10 @@ img {
 	max-width: 2048px;
 }
 
+.loading {
+	position: absolute;
+}
+
 .coords {
 	position: sticky;
 	top: 0;
@@ -11,6 +15,9 @@ img {
 
 .imageWrapper {
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .menuWrapper {
