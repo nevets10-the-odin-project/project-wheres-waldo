@@ -5,6 +5,7 @@
 
 .character {
 	border: solid gray 1px;
+	text-align: center;
 }
 
 .character:hover {
