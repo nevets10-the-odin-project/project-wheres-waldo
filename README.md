@@ -14,6 +14,10 @@ Keep track of how long it takes from when the photo is first loaded to when the 
 
 Extra credit - Load many images into your database and allow the user to select from among them before starting the game.
 
+## Post project review
+
+It's a little rough around the edges, but I think it turned out alright. The start was really rocky. I completely forgot about the bundling lesson, so I immediately went off the rails (ha ha. get it?) trying to find out how to use React with Rails. That was a couple days of lost time... I eventually remembered and the rest was relatively smooth.
+
 ## Brainstorming
 
 To keep things simple, I'll just use a Where's Waldo image. I would prefer to use a creative commons image, assuming Waldo is copyrighted, but I want to prioritize time. Since this is for educational purposes, I believe this would fall under fair use. I will try to avoid including images in this repo and just link to them from elsewhere instead.
