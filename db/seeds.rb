@@ -8,12 +8,12 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-%w[Waldo Wilma Odlaw].each do |name|
+%w[Waldo Wilma Wizard Odlaw Woof].each do |name|
   Character.find_or_create_by!(name: name)
 end
 
 [
-  { name: 'In Town', file_name: 'https://ia600106.us.archive.org/BookReader/BookReaderImages.php?zip=/4/items/whereswaldo87/whereswaldo87_jp2.zip&file=whereswaldo87_jp2/whereswaldo87_0003.jp2&id=whereswaldo87&scale=2&rotate=0' }
+  { name: 'In Town', file_name: 'https://ia800402.us.archive.org/1/items/wheres-waldo-archive/01%20-%20Where%27s%20Waldo/1997%20-%20Where%27s%20Waldo%20Special%20Edition/book1-1997-scene01-in-town-600dpi.jpg' }
 ].each do |image|
   Image.find_or_create_by!(name: image[:name], file_name: image[:file_name])
 end
@@ -22,10 +22,42 @@ end
   {
     image_id: 1,
     character_id: 1,
-    start_x: 1268,
-    start_y: 831,
-    end_x: 1334,
-    end_y: 921
+    start_x: 872,
+    start_y: 938,
+    end_x: 937,
+    end_y: 1020
+  },
+  {
+    image_id: 1,
+    character_id: 2,
+    start_x: 887,
+    start_y: 759,
+    end_x: 919,
+    end_y: 801
+  },
+  {
+    image_id: 1,
+    character_id: 3,
+    start_x: 1324,
+    start_y: 978,
+    end_x: 1377,
+    end_y: 1013
+  },
+  {
+    image_id: 1,
+    character_id: 4,
+    start_x: 1173,
+    start_y: 1206,
+    end_x: 1206,
+    end_y: 1252
+  },
+  {
+    image_id: 1,
+    character_id: 5,
+    start_x: 1164,
+    start_y: 390,
+    end_x: 1187,
+    end_y: 407
   }
 ].each do |coord|
   Coordinate.find_or_create_by!(
