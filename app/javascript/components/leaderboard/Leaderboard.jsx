@@ -19,9 +19,11 @@ export default function Leaderboard() {
 	return (
 		<>
 			<Nav />
-			{imgData?.map((img) => (
-				<ImageLeaderboard key={img.id} image={img} />
-			))}
+			<div className={styles.leaderboards}>
+				{imgData?.map((img) => (
+					<ImageLeaderboard key={img.id} image={img} />
+				))}
+			</div>
 		</>
 	);
 }
