@@ -6,7 +6,7 @@ export default function CharacterPin({ character, coordinates }) {
 		<div
 			className={styles.pin}
 			style={{
-				top: coordinates.start_y - 30,
+				top: coordinates.start_y - 40,
 				left: coordinates.start_x,
 			}}
 		>
