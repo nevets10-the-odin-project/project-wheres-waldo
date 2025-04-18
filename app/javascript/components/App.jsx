@@ -31,8 +31,8 @@ function App() {
 					in, press <strong>CTRL</strong> & <strong>+ key</strong>
 				</p>
 				<p>
-					The images are very large. I don't want to host them myself for copyright
-					reasons, so I cannot edit them.
+					The images are very large. I don't want to host them myself, so I cannot
+					edit them.
 				</p>
 			</div>
 		</>
