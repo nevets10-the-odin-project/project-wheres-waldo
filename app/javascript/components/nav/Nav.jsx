@@ -5,7 +5,7 @@ import styles from "./nav.module.css";
 import { Link } from "react-router-dom";
 
 export default function Nav() {
-	const [showNav, setShowNav] = useState(true);
+	const [showNav, setShowNav] = useState(false);
 
 	function toggleMenu() {
 		setShowNav(!showNav);
