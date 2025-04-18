@@ -57,7 +57,6 @@ export default function ImagePage() {
 	}
 
 	function handleCharSubmit(e) {
-		setShowBox(!showBox);
 		setIsChecking(true);
 		lastGuess.current = coordinates;
 
@@ -77,14 +76,14 @@ export default function ImagePage() {
 			})
 				.then((res) => res.json())
 				.then((data) => {
-					setIsChecking(false);
-
 					if (gameData.found_characters === data.found_characters) {
 						setBadGuess(true);
 					} else {
 						setBadGuess(false);
 					}
 
+					setIsChecking(false);
+					setShowBox(!showBox);
 					setGameData(data);
 				});
 		} catch (error) {
@@ -139,7 +138,7 @@ export default function ImagePage() {
 					style={{ top: coordinates.y - 25, left: coordinates.x - 25 }}
 				>
 					{isChecking && (
-						<div style={{ top: coordinates.y - 25, left: coordinates.x - 25 }}>
+						<div className={styles.loading} style={{ top: 5, left: 5 }}>
 							<Icon path={mdiLoading} spin={1} size={2} />
 						</div>
 					)}
