@@ -57,6 +57,7 @@ export default function ImagePage() {
 	}
 
 	function handleCharSubmit(e) {
+		setShowBox(!showBox);
 		setIsChecking(true);
 		lastGuess.current = coordinates;
 
@@ -84,7 +85,6 @@ export default function ImagePage() {
 						setBadGuess(false);
 					}
 
-					setShowBox(!showBox);
 					setGameData(data);
 				});
 		} catch (error) {
