@@ -20,6 +20,10 @@ img {
 	align-items: center;
 }
 
+.imageWrapper path {
+	stroke: black;
+}
+
 .menuWrapper {
 	display: none;
 }
@@ -37,8 +41,4 @@ img {
 
 .hide {
 	display: none;
-}
-
-path {
-	stroke: black;
 }

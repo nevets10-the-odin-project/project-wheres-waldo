@@ -19,3 +19,21 @@
 .nav a:hover {
 	background-color: rgb(45, 45, 45);
 }
+
+.menuIcon {
+	display: none;
+}
+
+@media (max-width: 595px) {
+	.nav {
+		justify-content: start;
+	}
+
+	.nav a {
+		display: none;
+	}
+
+	.menuIcon {
+		display: initial;
+	}
+}
