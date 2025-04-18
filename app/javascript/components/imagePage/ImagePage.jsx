@@ -110,8 +110,13 @@ export default function ImagePage() {
 			console.log(error);
 		}
 	}
-	console.table(coordinates);
-	if (imgData === undefined) return <div>Loading...</div>;
+
+	if (imgData === undefined)
+		return (
+			<div className={styles.loading}>
+				<Icon path={mdiLoading} spin={1} size={10} />
+			</div>
+		);
 
 	return (
 		<>
