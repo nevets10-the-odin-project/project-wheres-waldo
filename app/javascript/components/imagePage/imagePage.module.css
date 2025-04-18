@@ -45,6 +45,6 @@ img {
 
 @media (max-width: 595px) {
 	.imageWrapper {
-		display: initial;
+		align-items: start;
 	}
 }
