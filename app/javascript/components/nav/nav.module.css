@@ -27,10 +27,8 @@
 @media (max-width: 595px) {
 	.nav {
 		justify-content: start;
-	}
-
-	.nav a {
-		display: none;
+		flex-direction: column;
+		gap: 0;
 	}
 
 	.menuIcon {
