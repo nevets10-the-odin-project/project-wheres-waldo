@@ -16,13 +16,15 @@ export default function Nav() {
 				<div className={styles.iconWrapper} onClick={toggleMenu}>
 					<Icon className={styles.menuIcon} path={mdiMenu} size={2} color="white" />
 				</div>
-				{showNav && (
-					<>
-						<Link to="/">Home</Link>
-						<Link to="/images">Images</Link>
-						<Link to="/leaderboard">Leaderboard</Link>
-					</>
-				)}
+				<Link className={showNav ? "" : styles.hidden} to="/">
+					Home
+				</Link>
+				<Link className={showNav ? "" : styles.hidden} to="/images">
+					Images
+				</Link>
+				<Link className={showNav ? "" : styles.hidden} to="/leaderboard">
+					Leaderboard
+				</Link>
 			</div>
 		</>
 	);
