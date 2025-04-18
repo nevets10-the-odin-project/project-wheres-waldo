@@ -42,3 +42,9 @@ img {
 .hide {
 	display: none;
 }
+
+@media (max-width: 595px) {
+	.imageWrapper {
+		display: initial;
+	}
+}
